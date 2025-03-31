@@ -43,7 +43,7 @@ int mouseDown = 0;
 int circleCount = 0;
 float mx, my, mx2, my2;
 
-//Drawing Functions
+
 void SDL_RenderFillCircle(SDL_Renderer *renderer, Circle circle) {
     for (int w = -circle.radius; w <= circle.radius; w++) {
         for (int h = -circle.radius; h <= circle.radius; h++) {
@@ -61,7 +61,7 @@ void SDL_RenderFillCircle(SDL_Renderer *renderer, Circle circle) {
 void AddCircle(float x, float y) {
     CircleNode *newNode = (CircleNode *)malloc(sizeof(CircleNode));
     if (!newNode) {
-        SDL_Log("Memory allocation failed!");
+        SDL_Log("Bad Circle");
         return;
     }
 
@@ -112,13 +112,13 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
 // Main Loop
 SDL_AppResult SDL_AppIterate(void *appstate)
 {
-    //Background stuff; fullscreen, bg color, clearing renderer to set new frames yada yada
-    //SDL_SetWindowFullscreen(window, true);
+    
+    SDL_SetWindowFullscreen(window, true);
     SDL_HideCursor();
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
 
-    //Drawing the stationary circle
+    //Drawing the painted circles
     RenderCircles(renderer);
     
 
@@ -126,7 +126,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     SDL_SetRenderDrawColor(renderer, 0, 65,170, 255);
     SDL_PutCircleAtMousePosition(renderer, &circle);
 
-    //More SDL stuff I think this updates the screen to the latest frame idk man
+    //More SDL stuff I think this updates the screen to the latest frame
     SDL_RenderPresent(renderer);
 
     return SDL_APP_CONTINUE;
