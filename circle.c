@@ -13,7 +13,7 @@ static SDL_Renderer *renderer = NULL;
 // Initialize SDL
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 {
-    if (!SDL_CreateWindowAndRenderer("Graphics Engine", WINDOW_WIDTH, WINDOW_HEIGHT, 0, &window, &renderer)) {
+    if (!SDL_CreateWindowAndRenderer("Circle", WINDOW_WIDTH, WINDOW_HEIGHT, 0, &window, &renderer)) {
         SDL_Log("Couldn't create window and renderer: %s", SDL_GetError());
         return SDL_APP_FAILURE;
     }
